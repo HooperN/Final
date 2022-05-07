@@ -108,6 +108,9 @@ public class HeapPriorityQueue<T extends Comparable<? super T>>{
 		elements[to] = temp;
 	}
 	
+	/**
+	 * 
+	 */
 	public String toString() {
 		if(isEmpty()) { return ""; }
 		

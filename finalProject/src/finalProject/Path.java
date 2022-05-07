@@ -14,7 +14,7 @@ public class Path implements Comparable<Path>{
 	}
 	
 	public Path(Path old, Vertex next, int edgeCost) {
-		this.end = old.end;
+		this.end = next;
 		this.cost = old.cost + edgeCost;
 		this.pathStr = old.pathStr + next.getSymbol();
 	}
@@ -41,7 +41,7 @@ public class Path implements Comparable<Path>{
 
 	@Override
 	public int compareTo(Path o) {
-		return cost - o.cost;
+		return o.cost - cost;
 	}
 
 }

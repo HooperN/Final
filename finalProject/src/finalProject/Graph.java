@@ -18,6 +18,7 @@ public class Graph {
 	public Graph(String fname) {
 		adjacencyList = new HashMap<Vertex, Set<Edge>>();
 		readFile(fname);
+		
 //		for(Vertex v : adjacencyList.keySet()) 
 //			for(Edge e : adjacencyList.get(v)) 
 //				System.out.println(e);
@@ -30,6 +31,14 @@ public class Graph {
 	
 	public void setReturnAddress(boolean useAddress) {
 		Graph.returnAddress = useAddress;
+	}
+	
+	public Map<Vertex, Set<Edge>> getMap(){
+		return adjacencyList;
+	}
+	
+	public boolean getUseDist() {
+		return useDistCost;
 	}
 	
 	public String toString() {
