@@ -13,8 +13,24 @@ public class Edge{
 		timeCost = time;
 		distance = dist;
 	}
-
-	//compareto?
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Edge)) { return false; }
+		
+		Edge e = (Edge) o;
+		return (start.equals(e.getStart()) && end.equals(e.getEnd()));
+	}
+	
+	@Override
+	public int hashCode() {
+		return start.hashCode() + end.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Destination: %s, Time cost: %d, Distance: %d", end.getSymbol(), timeCost, distance);
+	}
 	
 	public double getTime() {
 		return timeCost;
@@ -28,8 +44,8 @@ public class Edge{
 		return end;
 	}
 	
-	public String getString() {
-		return String.format("Destination: %c, Time cost: %d, Distance: %d", end.getSymbol(), timeCost, distance);
+	public Vertex getStart() {
+		return start;
 	}
-
+	
 }

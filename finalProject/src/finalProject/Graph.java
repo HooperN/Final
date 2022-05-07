@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -19,6 +18,10 @@ public class Graph {
 	public Graph(String fname) {
 		adjacencyList = new HashMap<Vertex, Set<Edge>>();
 		readFile(fname);
+//		for(Vertex v : adjacencyList.keySet()) 
+//			for(Edge e : adjacencyList.get(v)) 
+//				System.out.println(e);
+		
 	}
 	
 	public void setUseDistCost(boolean useDist) {
@@ -33,15 +36,13 @@ public class Graph {
 		String ret = "";
 		
 		for(Vertex v : adjacencyList.keySet()) {
-			ret += (returnAddress ? v.toString() : "Vertex:" + v.getSymbol()) + ", Edges: ";
+			ret += (returnAddress ? v.toString() : "Vertex:" + v.getSymbol()) + ", Edges: [";
 			for(Edge e : adjacencyList.get(v)) {
-				ret += "(" + (returnAddress ? e.getEnd().toString() : e.getEnd().getSymbol()) 
-				+ (useDistCost ? "Distance: " + e.getDistance() : "Time: " + e.getTime()) + ")";
+				ret += " (" + (returnAddress ? e.getEnd().toString() : e.getEnd().getSymbol()) 
+				+ (useDistCost ? "Distance: " + e.getDistance() : "Time: " + e.getTime()) + ") ";
 			}
-			ret += "\n";
+			ret += "]\n";
 		}
-		
-		
 		return ret;
 	}
  
@@ -78,14 +79,18 @@ public class Graph {
             line = file.nextLine();
             String[] s = line.split("\t");
             while (!line.equals("</Edges>")) {
-            	Vertex temp = new Vertex(s[0], "", 0, 0);
+            	Vertex v = new Vertex(s[0], "", 0, 0);
+            	Set<Edge> edgeSet = new HashSet<Edge>();
             	
-//                do {
-//                    
-//                    line = file.nextLine();
-//                    s = line.split("\t");
-//                } while (s[0].equals(v.getSymbol()));
-//                     
+                do {
+                	Vertex end = new Vertex(s[1], "", 0, 0);
+                	Edge e = new Edge(v, end, Integer.parseInt(s[2]), Integer.parseInt(s[3]));
+                	//System.out.println(e.toString());
+                	edgeSet.add(e);
+                    line = file.nextLine();
+                    s = line.split("\t");
+                } while (s[0].equals(v.getSymbol()));
+                adjacencyList.replace(v, edgeSet);
             }
             
         } catch (FileNotFoundException e) {

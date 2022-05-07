@@ -19,6 +19,29 @@ public class Vertex {
 		this.y = y;
 	}
 	
+	@Override
+	public int hashCode() {
+		return symbol.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		return "Vertex " + symbol + ": " + address;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof Vertex)) { return false; }
+		
+		Vertex v = (Vertex) o;
+		
+		return symbol.equals(v.getSymbol());
+	}
+	
+	public boolean equals(String s) {
+		return symbol.equals(s);
+	}
+	
 	public String getSymbol() {
 		return symbol;
 	}
@@ -26,17 +49,4 @@ public class Vertex {
 	public String getAddress() {
 		return address;
 	}
-	
-	public String toString() {
-		return "Vertex " + symbol + ": " + address;
-	}
-	
-	public boolean equals(Vertex v) {
-		return symbol == v.getSymbol();
-	}
-	
-	public boolean equals(String s) {
-		return symbol.equals(s);
-	}
-
 }
