@@ -32,11 +32,11 @@ public class Edge{
 		return String.format("Destination: %s, Time cost: %d, Distance: %d", end.getSymbol(), timeCost, distance);
 	}
 	
-	public double getTime() {
+	public int getTime() {
 		return timeCost;
 	}
 	
-	public double getDistance() {
+	public int getDistance() {
 		return distance;
 	}
 	

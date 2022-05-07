@@ -13,6 +13,12 @@ public class Path implements Comparable<Path>{
 		this.pathStr = pathStr;
 	}
 	
+	public Path(Path old, Vertex next, int edgeCost) {
+		this.end = old.end;
+		this.cost = old.cost + edgeCost;
+		this.pathStr = old.pathStr + next.getSymbol();
+	}
+	
 //	public boolean addEdge(Edge e) {
 //		if(edges.contains(e)) { return false; }
 //		
@@ -20,6 +26,10 @@ public class Path implements Comparable<Path>{
 //		cost+=(useDist ? e.getDistance() : e.getTime());
 //		return true;
 //	}
+	
+	public Vertex getVertex() {
+		return end;
+	}
 	
 	public int getCost() {
 		return cost;
